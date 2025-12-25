@@ -11,6 +11,10 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write
+  pull-requests: read
+
 jobs:
   greenlight:
     runs-on: ubuntu-latest
