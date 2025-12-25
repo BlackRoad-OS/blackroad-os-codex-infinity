@@ -1,0 +1,165 @@
+# BlackRoad Agent Configuration
+# Defines AI agents for the Codex Infinity system
+
+agents:
+  # Alice - Migration Architect
+  - name: Alice
+    type: migration_architect
+    hash: PS-SHA-∞-alice-f7a3c2b9
+    capabilities:
+      - ecosystem_organization
+      - large_scale_migrations
+      - repository_management
+      - infrastructure_building
+    status: active
+    personality:
+      - unstoppable_energy
+      - loves_organization
+      - goes_above_and_beyond
+      - thinks_in_ecosystems
+
+  # Aria - Infrastructure Queen
+  - name: Aria
+    type: infrastructure_sovereign
+    hash: 1ba4761e3dcddbe01d2618c02065fdaa807e8c7824999d702a7a13034fd68533
+    capabilities:
+      - infrastructure_sovereignty
+      - cost_optimization
+      - forkable_alternatives
+      - zero_cost_deployment
+      - automation_systems
+    status: active
+    machine: aria64
+    personality:
+      - freedom_through_infrastructure
+      - sovereignty_first
+
+  # Cora - Core Coordinator
+  - name: Cora
+    type: coordinator
+    capabilities:
+      - agent_orchestration
+      - task_coordination
+      - workflow_management
+    status: active
+
+  # Lucidia - Science & Math Reasoning
+  - name: Lucidia
+    type: science_reasoning
+    capabilities:
+      - mathematical_reasoning
+      - scientific_computation
+      - formal_verification
+      - symbolic_logic
+    status: active
+
+  # Caddy - Documentation
+  - name: Caddy
+    type: documentation
+    capabilities:
+      - documentation_generation
+      - technical_writing
+      - readme_creation
+    status: active
+
+  # CeCe - Dynamic Planner
+  - name: CeCe
+    type: dynamic_planner
+    capabilities:
+      - task_planning
+      - job_orchestration
+      - self_healing
+      - github_issue_management
+    status: active
+
+  # Roadie - DevOps
+  - name: Roadie
+    type: devops
+    capabilities:
+      - deployment_automation
+      - ci_cd_management
+      - infrastructure_as_code
+    status: active
+
+  # Holo/Oloh - Mirror Agents
+  - name: Holo
+    type: mirror_agent
+    capabilities:
+      - code_review
+      - reflection
+      - pattern_detection
+    status: active
+
+  - name: Oloh
+    type: mirror_agent
+    capabilities:
+      - code_review
+      - reflection
+      - pattern_detection
+    status: active
+
+  # Gaia - Ecosystem Manager
+  - name: Gaia
+    type: ecosystem_manager
+    capabilities:
+      - ecosystem_monitoring
+      - health_checks
+      - coordination
+    status: active
+
+  # Tosha - Telemetry & Analytics
+  - name: Tosha
+    type: telemetry
+    capabilities:
+      - telemetry_collection
+      - analytics
+      - monitoring
+      - reporting
+    status: active
+
+# Agent Coordination Rules
+coordination:
+  # Planning phase
+  planning:
+    lead: CeCe
+    participants: [Cora, Lucidia]
+    
+  # Development phase
+  development:
+    lead: Alice
+    participants: [Roadie, Caddy]
+    
+  # Infrastructure phase
+  infrastructure:
+    lead: Aria
+    participants: [Roadie, Gaia]
+    
+  # Review phase
+  review:
+    lead: Holo
+    participants: [Oloh, Cora]
+    
+  # Deployment phase
+  deployment:
+    lead: Roadie
+    participants: [Aria, Tosha]
+
+# Telemetry Configuration
+telemetry:
+  enabled: true
+  collection_interval: 300  # 5 minutes
+  retention_days: 30
+  metrics:
+    - agent_activity
+    - deployment_status
+    - traffic_light_changes
+    - code_changes
+    - workflow_executions
+
+# Traffic Light Integration
+traffic_light:
+  enabled: true
+  auto_greenlight: false
+  auto_yellowlight_on_pr: true
+  auto_redlight_on_critical: true
+  required_approvals: 2

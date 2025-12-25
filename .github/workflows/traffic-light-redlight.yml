@@ -1,0 +1,43 @@
+name: 🔴 RedLight - Deployment Blocked
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Block reason'
+        required: true
+        default: 'Deployment blocked due to critical issues'
+  issues:
+    types: [opened, labeled]
+
+jobs:
+  redlight:
+    runs-on: ubuntu-latest
+    name: Set RedLight Status
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'critical'))
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Set RedLight
+        run: |
+          ./blackroad-traffic-light.sh redlight --message "${{ github.event.inputs.message || 'Critical issue detected' }}"
+          
+      - name: Display Status
+        run: |
+          ./blackroad-traffic-light.sh status
+          
+      - name: Commit Status
+        run: |
+          git config user.name "BlackRoad Bot"
+          git config user.email "bot@blackroad.io"
+          git add .blackroad/
+          git commit -m "🔴 RedLight: ${{ github.event.inputs.message || 'Deployment blocked' }}" || echo "No changes to commit"
+          git push || echo "Nothing to push"
+          
+      - name: Notify on Block
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          echo "::warning::🔴 REDLIGHT - Deployment is BLOCKED: ${{ github.event.inputs.message }}"

@@ -1,0 +1,39 @@
+name: 🟡 YellowLight - Review Required
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Warning message'
+        required: false
+        default: 'Deployment needs review'
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  yellowlight:
+    runs-on: ubuntu-latest
+    name: Set YellowLight Status
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Set YellowLight
+        run: |
+          ./blackroad-traffic-light.sh yellowlight --message "${{ github.event.inputs.message || 'PR opened - review required' }}"
+          
+      - name: Display Status
+        run: |
+          ./blackroad-traffic-light.sh status
+          
+      - name: Add PR Comment
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '🟡 **YellowLight**: This PR requires review before deployment. Please ensure all checks pass and get appropriate approvals.'
+            })

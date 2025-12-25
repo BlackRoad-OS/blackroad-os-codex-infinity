@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# BlackRoad - Cache and temporary files only
+.blackroad/codex/cache/
+.blackroad/codex/index/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Archives
+*.zip
+*.tar.gz
+*.b64
+
+# Temporary files
+tmp/
+temp/
+*.tmp

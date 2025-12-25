@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "repository": "blackroad-os-codex-infinity",
+  "initialized": "2025-12-25T07:30:44Z",
+  "features": {
+    "code_indexing": true,
+    "semantic_search": true,
+    "agent_coordination": true,
+    "telemetry": true,
+    "traffic_light": true
+  },
+  "agents": {
+    "registered": [],
+    "active": []
+  }
+}

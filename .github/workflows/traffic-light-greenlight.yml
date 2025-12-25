@@ -1,0 +1,36 @@
+name: 🟢 GreenLight - Deployment Approved
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Approval message'
+        required: false
+        default: 'Deployment approved and ready!'
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  greenlight:
+    runs-on: ubuntu-latest
+    name: Set GreenLight Status
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Set GreenLight
+        run: |
+          ./blackroad-traffic-light.sh greenlight --message "${{ github.event.inputs.message || 'Deployment approved via tag push' }}"
+          
+      - name: Display Status
+        run: |
+          ./blackroad-traffic-light.sh status
+          
+      - name: Commit Status
+        run: |
+          git config user.name "BlackRoad Bot"
+          git config user.email "bot@blackroad.io"
+          git add .blackroad/
+          git commit -m "🟢 GreenLight: ${{ github.event.inputs.message || 'Deployment approved' }}" || echo "No changes to commit"
+          git push || echo "Nothing to push"
